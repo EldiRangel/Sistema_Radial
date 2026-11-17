@@ -1,0 +1,51 @@
+# Dependencias y artefactos de build
+node_modules/
+out/
+dist/
+release/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Pruebas
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Base de datos local y respaldos
+data/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backups/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Documentos y capturas locales
+# El plan de trabajo está en Markdown dentro del repositorio.
+*.docx
+photo_*.jpg
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Logs y temporales
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.temp

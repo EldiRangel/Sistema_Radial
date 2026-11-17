@@ -1,0 +1,12 @@
+{
+  "name": "radioflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sistema de Gestión de Emisión Radial y Continuidad Programática",
+  "main": "out/main/index.js",
+  "author": "Equipo RadioFlow - Universidad Rafael Urdaneta",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  }
+}
