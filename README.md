@@ -57,6 +57,7 @@ scripts/      Scripts de apoyo (seed, generación de audios, etc.).
 ## Documentos de trabajo
 
 - [Plan de liderazgo y alcance MVP](Plan_RadioFlow_Liderazgo.md)
+- [Asignación de tareas y requerimientos del MVP](docs/TAREAS_EQUIPO.md)
 - [Guía de contribución](CONTRIBUTING.md)
 - [Estructura detallada](docs/STRUCTURE.md)
 
