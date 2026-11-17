@@ -356,7 +356,121 @@ Una tarea está hecha cuando:
 
 ---
 
-## 8. Checklist del líder antes de cerrar la semana
+## 8. Orden de ejecución por persona
+
+Esta es la secuencia exacta. No es una lista de deseos: es el orden en el que cada uno debe avanzar. Si una tarea depende de otra persona, se trabaja en paralelo en lo que no dependa de ella.
+
+### 8.1 Eldi — orden de trabajo
+
+1. Cerrar el alcance MVP y la lista de “no se hará”.
+2. Escribir el SRS v1: actores, RF, RN, RNF y criterios de aceptación.
+3. Crear el tablero y cargar el backlog inicial con dueños y prioridades.
+4. Definir el set de audios de prueba y los datos de demo.
+5. Escribir los casos de prueba del walking skeleton.
+6. Revisar el ERD de Urdaneta contra los requerimientos.
+7. Revisar los wireframes de Urdaneta contra los flujos de cabina.
+8. Preparar el acta de kickoff y el guion de la demo de la semana 2.
+9. Semana 2: probar el flujo importar → programar → reproducir → log.
+10. Semana 2: registrar bugs y priorizarlos; no dejar que el alcance crezca.
+11. Semanas 3–4: probar parrilla, pauta, crossfade, vivo y reportes.
+12. Semanas 3–4: hacer UAT con un operador real o simulado.
+13. Semanas 5–6: regresión completa, triaje de bugs y matriz de trazabilidad.
+14. Semanas 5–6: actualizar manual de usuario y documento final.
+15. Semanas 5–6: coordinar y documentar la prueba de 8 horas.
+16. Semanas 7–8: UAT final, documento final, ensayo de demo y presentación.
+
+**Regla para Eldi:** no empieces a “apagar incendios” antes de tener el alcance y los criterios de aceptación escritos. Sin eso, el equipo no sabe qué está construyendo.
+
+### 8.2 Luis Urdaneta — orden de trabajo
+
+1. Leer el SRS y los casos de uso de Eldi.
+2. Hacer el ERD v1 y el diccionario de datos.
+3. Crear `schema.ts` con las tablas mínimas del MVP.
+4. Configurar Drizzle Kit y generar la primera migración.
+5. Crear `client.ts`: SQLite, WAL, `foreign_keys` y cliente Drizzle.
+6. Crear `seed.ts`: estación, configuración, programas y 20 audios de prueba.
+7. Implementar las consultas básicas: listar medios, obtener bloque actual y crear log.
+8. Hacer los wireframes de Cabina y Productor.
+9. Semana 2: conectar la biblioteca a las consultas reales con Esteban.
+10. Semana 2: verificar que la migración corre desde cero en una base limpia.
+11. Semana 3: CRUD de biblioteca, parrilla y campañas.
+12. Semana 3: validaciones de solapamiento, huecos y elementos sin archivo.
+13. Semana 3: consultas de cola y pauta para Chirinos.
+14. Semana 4: consultas de reportes por fecha, anunciante y campaña.
+15. Semana 4: respaldo/restauración y pantalla de configuración de audio.
+16. Semana 5: índices, rendimiento e integridad de datos.
+17. Semana 6: apoyar la integración y corregir bugs de datos.
+18. Semanas 7–8: datos de demo estables, respaldo final y apoyo en la presentación.
+
+**Regla para Urdaneta:** primero el esquema y las migraciones; después las consultas; al final la optimización. No optimices tablas que todavía no existen.
+
+### 8.3 Luis Chirinos — orden de trabajo
+
+1. Leer el SRS y los criterios de aceptación de audio.
+2. Hacer el spike de audio en una página mínima, sin esperar la UI completa.
+3. Probar dos WAV, crossfade de 3 s y registro de inicio/fin.
+4. Medir latencia, memoria y comportamiento al cambiar de dispositivo.
+5. Documentar el resultado en `docs/adr/0003-motor-de-audio.md`.
+6. Definir la interfaz del motor: `load`, `play`, `pause`, `stop`, `next`, `crossfade`, `live` y eventos.
+7. Acordar con Esteban el contrato de estados y eventos de la cabina.
+8. Implementar el protocolo/IPC para servir archivos de audio al renderer.
+9. Implementar el núcleo del motor: decodificar, reproducir, pausar, stop y volumen.
+10. Escribir pruebas unitarias de tiempo, cola y crossfade.
+11. Semana 2: integrar el motor con la UI y registrar inicio/fin en el log.
+12. Semana 2: dejar funcionando el walking skeleton con Esteban y Urdaneta.
+13. Semana 3: scheduler y generación de cola por bloque.
+14. Semana 3: precarga, crossfade y reglas de pauta.
+15. Semana 4: interrupción en vivo con retorno a la cola.
+16. Semana 4: archivos faltantes, errores y recuperación de sesión.
+17. Semana 5: prueba de 2 horas y luego prueba de 8 horas.
+18. Semana 5: corregir bugs de audio, cola y recuperación.
+19. Semana 6: congelar el motor y apoyar la integración.
+20. Semanas 7–8: prueba final en la máquina de la demo y corrección de bugs P0/P1.
+
+**Regla para Chirinos:** el spike va antes que el motor completo. Si el spike falla, se cambia de estrategia esa misma semana, no en la semana 6.
+
+### 8.4 Esteban Ceballos — orden de trabajo
+
+1. Leer el SRS y el inventario de pantallas.
+2. Configurar Electron + Vite + React + TypeScript.
+3. Configurar ESLint, Prettier, Vitest y Playwright.
+4. Crear el shell: sidebar, header, rutas y tema visual.
+5. Crear las pantallas base con datos mock: Cabina, Biblioteca, Parrilla, Campañas, Reportes y Configuración.
+6. Crear el cliente IPC tipado y el contrato con Chirinos/Urdaneta.
+7. Implementar la primera prueba E2E: abrir la app y navegar.
+8. Semana 2: conectar la biblioteca a datos reales.
+9. Semana 2: implementar la Cabina básica con play/pause/stop y cola.
+10. Semana 2: integrar el walking skeleton con Chirinos y Urdaneta.
+11. Semana 3: Cabina real con actual, restante, siguiente, estado y reloj.
+12. Semana 3: controles de transporte, cartwall y atajos de teclado.
+13. Semana 3: pantallas de Parrilla y Campañas conectadas.
+14. Semana 4: pantalla de Reportes con filtros y exportación CSV.
+15. Semana 4: botón “EN VIVO”, estados de la interfaz y manejo de errores.
+16. Semana 5: pruebas E2E de los flujos principales.
+17. Semana 5: accesibilidad, navegación por teclado y pulido visual.
+18. Semana 5: empaquetado con electron-builder.
+19. Semana 6: instalador probado en máquina limpia y corrección de bugs.
+20. Semanas 7–8: release `v1.0`, instalador final y apoyo en la demo.
+
+**Regla para Esteban:** no esperes al backend para maquetar. Usa datos mock, pero no considers una pantalla terminada hasta que esté conectada a datos reales y probada con teclado.
+
+### 8.5 Orden de integración del equipo
+
+1. Eldi entrega SRS y criterios de aceptación.
+2. Esteban entrega la base del proyecto y el shell.
+3. Chirinos entrega el spike y la interfaz del motor.
+4. Urdaneta entrega el ERD, las migraciones y el seed.
+5. Esteban conecta la biblioteca a datos reales.
+6. Chirinos conecta el motor a la Cabina.
+7. Urdaneta conecta parrilla, cola y log.
+8. Eldi prueba el flujo completo y registra bugs.
+9. El equipo corrige y repite la demo cada viernes.
+
+**Dependencia crítica:** si Urdaneta no entrega el esquema, Chirinos y Esteban no pueden conectar datos reales. Si Chirinos no entrega el spike, Esteban no puede construir la Cabina real. Por eso el orden importa.
+
+---
+
+## 9. Checklist del líder antes de cerrar la semana
 
 - [ ] Cada persona sabe cuál es su tarea y su criterio de aceptación.
 - [ ] El tablero refleja la realidad.
