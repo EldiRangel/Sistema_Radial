@@ -2,8 +2,8 @@
 
 Sistema de Gestión de Emisión Radial y Continuidad Programática.
 
-> **Estado actual:** Fase 1 — estructura del proyecto.  
-> Todavía no hay código de aplicación. Este repositorio contiene la organización de carpetas, la documentación base y las convenciones de trabajo del equipo.
+> **Estado actual:** Fase 1 — base técnica y shell de navegación.  
+> Electron + Vite + React + TypeScript ya están configurados. La aplicación abre, navega entre las seis secciones y muestra pantallas placeholder. El motor de audio y el esquema de base de datos se implementan en la siguiente fase.
 
 ## Stack definido
 
@@ -17,6 +17,37 @@ Sistema de Gestión de Emisión Radial y Continuidad Programática.
 | Pruebas unitarias | Vitest |
 | Pruebas end-to-end | Playwright |
 | Instalador | electron-builder |
+
+## Cómo ejecutar
+
+Requisitos: Node.js >= 22, npm y Windows 10/11.
+
+```bash
+npm install
+npm run dev       # abre la aplicación en modo desarrollo
+npm run build     # verifica tipos y genera la build de producción
+npm test          # pruebas unitarias con Vitest
+npm run test:e2e  # build + prueba de humo con Playwright
+```
+
+> `better-sqlite3` es una dependencia nativa. Antes de usar la base de datos
+> desde Electron hay que ejecutar `npm run rebuild`.
+
+### Scripts disponibles
+
+| Script | Qué hace |
+|---|---|
+| `npm run dev` | Aplicación en desarrollo con recarga en caliente |
+| `npm run build` | Typecheck + build de main, preload y renderer |
+| `npm start` | Previsualiza la build de producción |
+| `npm run typecheck` | Verifica TypeScript sin emitir archivos |
+| `npm run lint` | ESLint sobre todo el repositorio |
+| `npm run format` | Formatea con Prettier |
+| `npm test` | Pruebas unitarias |
+| `npm run test:e2e` | Build + E2E con Playwright y Electron |
+| `npm run db:generate` | Genera migraciones de Drizzle |
+| `npm run rebuild` | Recompila `better-sqlite3` para Electron |
+| `npm run dist:win` | Genera el instalador de Windows |
 
 ## Estructura
 
@@ -64,11 +95,11 @@ scripts/      Scripts de apoyo (seed, generación de audios, etc.).
 
 ## Próximos pasos
 
-1. Aprobar la estructura y el alcance MVP.
-2. Crear el `package.json` con dependencias y scripts.
-3. Configurar Electron + Vite + React + TypeScript.
-4. Configurar SQLite, Drizzle y la primera migración.
-5. Implementar el spike de audio de la semana 1.
+1. Cerrar el ERD y el diccionario de datos (Luis Urdaneta).
+2. Implementar el schema Drizzle, la migración y el seed.
+3. Completar el spike de audio y el contrato del motor (Luis Chirinos).
+4. Implementar Biblioteca y Parrilla con datos mock (Esteban).
+5. Conectar el walking skeleton: parrilla, reproducción y registro en `play_log`.
 
 ## Nota sobre documentos locales
 
